@@ -31,3 +31,10 @@
   (remainder (fast-expt base exp) m))
 
 (expmod 2 3 3)
+
+
+;; 計算結果という意味では同一の結果が得られる。
+;; オリジナルのexpmodは繰り返し毎にbaseの剰余を求めて、
+;; 値があまり大きくならないようにしている。
+;; Alyssaのexpmodでは一度に累乗を求めてからbaseの剰余を求めているので
+;; remainderに時間がかかっている。
