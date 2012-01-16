@@ -67,7 +67,12 @@
   (sum pi-term a pi-next b))
 
 (pi-sum 1 7)
-
+;; gosh> 0.3619047619047619
+;; goshの定数を利用して比較してみる
+(use math.const)
+(/ pi 8)
+;; gosh> 0.39269908169872414
+;; 小数点以下2桁目まで一致
 
 ;; a,b間の関数fの定積分
 (define (integral f a b dx)
@@ -79,5 +84,6 @@
   (* x x x))
 
 (integral cube 0 1 0.01)
-
+;; gosh> 0.24998750000000042
 (integral cube 0 1 0.001)
+;; gosh> 0.249999875000001

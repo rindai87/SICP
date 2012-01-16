@@ -1,3 +1,6 @@
+;; 問題1.29
+;; Simpsonの公式
+
 (define (even? n)
   (= (remainder n 2) 0))
 
