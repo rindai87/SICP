@@ -33,3 +33,6 @@
 ;; gosh> #t
 (fermat-test 6601)
 ;; gosh> #t
+
+(fermat-test 10)
+;; gosh> #f
