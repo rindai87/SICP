@@ -5,7 +5,7 @@
   (if (> a b)
       null-value
       (combiner (term a)
-		(accumulate combiner null-value term (next a) next b))))
+		(accumulate combiner null-value term (next a) next b))))1
 
 (define (identity x) x)
 (define (inc x) (+ x 1))
