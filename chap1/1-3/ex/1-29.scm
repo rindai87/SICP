@@ -14,7 +14,7 @@
 	 (sum term (next a) next b))))
 
 (define (simpson f a b n)
-    (define (helper h)
+    (define h
       (/ (- b a) n))
     (define (next k)
       (+ k 1))
@@ -25,7 +25,7 @@
 	    [(even? k) (* 2 (y k))]
 	    [else (* 4 (y k))]))
     (* (sum term 0 next n)
-       (/ helper 3)))
+       (/ h 3)))
 
 
 (simpson cube 0 1.0 100)
