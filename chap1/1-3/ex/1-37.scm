@@ -8,7 +8,7 @@
       (combiner (term a)
 		(accumulate combiner null-value term (next a) next b))))
 
-(define (cont-frac n d k)
+(define (conf-frac n d k)
   (define (conf-frac-combiner i bunbo)
     (/ (n i) (+ (d i) bunbo)))
   (define (conf-frac-term i) i)
