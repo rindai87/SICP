@@ -22,3 +22,14 @@
 
 (use math.const)
 (tan-cf (/ pi 4) 8)
+
+;; こういうのもある
+(define (tan-cf x k)
+  (define (iter i)
+    (cond [(> i k) 0]
+	  [(= i 1)
+	   (/ x (- 1 (iter 2)))]
+	  [else
+	   (/ (* x x)
+	      (- (- (* i 2) 1) (iter (+ i 1))))])))
+  (iter 1))

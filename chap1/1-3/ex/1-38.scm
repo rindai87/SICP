@@ -1,4 +1,4 @@
-;; 問題1.37
+;; 問題1.38
 
 ;; 再帰版のconf-fracを利用する
 (define (accumulate combiner null-value term a next b)
@@ -34,3 +34,20 @@
 ;; gosh> 2.718283582089552
 (e 10)
 ;; gosh> 2.7182817182817183
+
+
+;; こういうやり方もある
+(define (cont-frac n d k)
+  (define (iter i)
+    (if (= i k)
+	(/ (n k) (d k))
+	(/ (n i) (+ (d i) (iter (+ i 1))))))
+  (iter 1))
+
+(define (e-2 k)
+  (cont-frac (lambda (x) 1.0)
+	     (lambda (x)
+	       (if (= (remainder x 3) 2)
+		   (* 2 (+ 1 (quotient x 3)))
+		   1.0))
+	    10.0))

@@ -79,3 +79,19 @@
 ;; gosh> 0.6180257510729613
 
 ;; 再帰版と同様の結果が得られることを確認した
+
+;; そんなややこしいことしなくてもこっちで大丈夫
+(define (cont-frac2 n d k)
+  (define (iter i)
+    (if (= i k)
+	(/ (n k) (d k))
+	(/ (n i) (+ (d i) (iter (+ i 1))))))
+  (iter 1))
+
+(define (cont-frac2-iter n d k)
+  (define (iter i val)
+    (if (= i 0)
+	val
+	(iter (- i 1)
+	      (/ (n i) (+ (d i) val)))))
+  (iter k 0.0))
