@@ -69,3 +69,18 @@
 
 (sqrt 4.0)
 ;; gosh> 2.0000000000002385
+
+
+;; 抽象と第一級手続き
+(define (fixed-point-of-transform g transform guess)
+  (fixed-point (transform g) guess))
+
+(define (sqrt x)
+  (fixed-point-of-transform (lambda (y) (/ x y))
+			    average-transform
+			    1.0))
+
+(define (sqrt x)
+  (fixed-point-of-transform (lambda (y) (- (square y) x))
+			    newton-transform
+			    1.0))
