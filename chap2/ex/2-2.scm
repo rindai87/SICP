@@ -31,6 +31,8 @@
 
 (midpoint-segment (make-segment (make-point 1 2)
 				(make-point 3 5)))
+;; gosh> 
+;; (2.0,3.5)
 
 ;; 点を出力する手続き
 (define (print-point p)

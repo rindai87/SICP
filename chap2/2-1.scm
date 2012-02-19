@@ -93,3 +93,21 @@
 (print-rat (add-rat one-third one-third))
 ;; gosh>
 ;; 2/3
+
+
+
+;; 2.1.2 抽象の壁
+
+;; 有理数の簡約化を、
+;; 有理数を構成する時ではなく、
+;; その部分を取り出す時に行う場合
+(define (make-rat n d)
+  (cons n d))
+
+(define (numer x)
+  (let ((g (gcd (car x) (cdr x))))
+    (/ (car x) g)))
+
+(define (denom x)
+  (let ((g (gcd (car x) (cdr x))))
+    (/ (cdr x) g)))
