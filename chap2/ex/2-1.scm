@@ -42,6 +42,27 @@
       a
       (gcd b (remainder a b))))
 
+
+;; 有理数が正なら分子、分母ともに正
+;; 有理数が負なら分子だけを負とする
 (define (make-rat n d)
-  (let ((g (gcd n d)))
-    (cons (/ n g) (/ d g))
+  (let ((g (abs (gcd n d))))
+     (if (< d 0)
+         (cons (/ (- n) g) (/ (- d) g))
+         (cons (/ n g) (/ d g)))))
+
+(define (check n d)
+  (print-rat (make-rat n d)))
+
+(check 6 9)
+;; gosh> 
+;; 2/3
+(check 6 -9)
+;; gosh> 
+;; -2/3
+(check -6 9)
+;; gosh> 
+;; -2/3
+(check -6 -9)
+;; gosh> 
+;; 2/3
