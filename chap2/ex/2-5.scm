@@ -39,3 +39,10 @@
 ;; gosh> 6
 (cdr (cons 6 10))
 ;; gosh> 10
+
+(cons 2 3)
+;; gosh> 108
+(car 108)
+;; gosh> 2
+(cdr 108)
+;; gosh> 3
