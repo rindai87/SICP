@@ -27,7 +27,7 @@
   (let ((start (start-segment seg))
 	(end (end-segment seg)))
     (print-point (make-point (/ (+ (x-point start) (x-point end)) 2.0)
-		       (/ (+ (y-point start) (y-point end)) 2.0)))))
+			     (/ (+ (y-point start) (y-point end)) 2.0)))))
 
 (midpoint-segment (make-segment (make-point 1 2)
 				(make-point 3 5)))

@@ -76,3 +76,25 @@
 (((mul two three) (lambda (x) (+ x 1))) 0)
 ;; 2 * 3
 ;; gosh> 6
+
+
+
+;; チャーチ数の引き算
+(define zz (cons zero zero))
+(define ss 
+  (lambda (p)
+    (cons (cdr p)
+	  (add-1 (cdr p)))))
+
+(define (sub-1 n)
+  (car ((n ss) zz)))
+
+(define (sub n1 n2)
+  ((n2 sub-1) n1))
+
+
+(((sub-1 two) (lambda (x) (+ x 1))) 0)
+(((sub-1 three) (lambda (x) (+ x 1))) 0)
+
+(((sub three two) (lambda (x) (+ x 1))) 0)
+(((sub three one) (lambda (x) (+ x 1))) 0)
