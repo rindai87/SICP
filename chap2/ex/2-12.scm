@@ -4,8 +4,8 @@
 (define (make-interval a b) (cons a b))
 
 ;; 選択子upper-bound, lower-boundの実装
-(define (upper-bound x) (car x))
-(define (lower-bound x) (cdr x))
+(define (upper-bound x) (cdr x))
+(define (lower-bound x) (car x))
 
 ;; 中央値と許容誤差で表す数を扱う構成子と選択子
 (define (make-center-width c w)
@@ -33,8 +33,8 @@
 
 ;; 10パーセントの許容誤差で6.8オーム(教科書P52)
 (define R1 (make-center-percent 6.8 10))
-R1
-;; gosh> (7.4799999999999995 . 6.12)
+(display R1)
+;; gosh> (6.12 . 7.479999999)
 (center R1)
 ;; gosh> 6.8
 (percent R1)

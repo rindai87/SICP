@@ -1,5 +1,7 @@
 ;; 問題2.14
 
+;; http://csnagoya-sicp.g.hatena.ne.jp/clairvy/20090412/sicp_ex_2_14
+
 (define (par1 r1 r2)
   (div-interval (mul-interval r1 r2)
 		(add-interval r1 r2)))
