@@ -80,3 +80,31 @@ one-through-four
   (if (null? list1)
       list2
       (cons (car list1) (append (cdr list1) list2))))
+
+
+;; リストの写像
+(define (scale-list items factor)
+  (if (null? items)
+      ()
+      (cons (* (car items) factor)
+	    (scale-list (cdr items) factor))))
+(scale-list (list 1 2 3 4 5) 10)
+;; gosh> (10 20 30 40 50)
+
+(define (map-new proc items)
+  (if (null? items)
+      ()
+      (cons (proc (car items))
+	    (map-new proc (cdr items)))))
+
+(map-new abs (list -10 2.5 -11.6 17))
+;; gosh> (10 2.5 11.6 17)
+
+(map-new (lambda (x) (* x x)) (list 1 2 3 4 5))
+;; gosh> (1 4 9 16 25)
+
+;; scale-listをmapを用いて再定義
+(define (scale-list2 items factor)
+  (map-new (lambda (x) (* x factor) items))
+(scale-list2 (list 1 2 3 4 5) 10)
+;; gosh> (10 20 30 40 50)
