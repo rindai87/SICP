@@ -50,5 +50,18 @@
 		      (list (square (car things)))))))
   (iter items ()))
 
+(define (square-list2 items)
+  (define (square x)
+    (* x x))
+  (define (iter things answer)
+    (if (null? things)
+	answer
+	(iter (cdr things)
+	      (cons (square (car things))
+		    answer))))
+  (iter items ()))
+
 (square-list (list 1 2 3 4))
 ;; gosh> (1 4 9 16)
+
+(reverse (square-list2 (list 1 2 3 4)))
