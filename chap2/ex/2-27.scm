@@ -12,10 +12,20 @@
 
 (reverse-new (list 1 2 3 4))
 
-(define (deep-reverse tree)
-  (if (not (pair? tree))
-      tree
-      (reverse (map deep-reverse tree))))
+;; 最初に思いついた回答
+;; 対なら(cdr, car)でくっつけて再帰的にたどっていく
+(define (deep-reverse . items)
+  (if (pair? items)
+      (append (deep-reverse (cdr items))
+              (list (deep-reverse (car items))))
+      items))
+
+;; mapを使う
+;; 葉まで分解し、再構築してreverseしながらくっつけていく
+(define (deep-reverse items)
+   (if (not (pair? items))
+      items
+      (reverse (map deep-reverse items))))
 
 x
 ;; gosh> ((1 2) (3 4))
