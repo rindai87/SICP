@@ -41,3 +41,29 @@
 
 (count-leaves (list x x))
 ;; gosh> 8
+
+
+
+;; 木の写像
+(define (scale-tree tree factor)
+  (define nil '())
+  (cond [(null? tree) nil]
+	[(not (pair? tree)) (* tree factor)]
+	[else (cons (scale-tree (car tree) factor)
+		    (scale-tree (cdr tree) factor))]))
+
+(scale-tree (list 1 (list 2 (list 3 4) 5) (list 6 7))
+	    10)
+;; gosh> (10 (20 (30 40) 50) (60 70))
+
+
+;; mapを利用するscale-tree
+(define (scale-tree tree factor)
+  (map (lambda (sub-tree) 
+	 (if (pair? sub-tree)
+	     (scale-tree sub-tree factor)
+	     (* sub-tree factor)))
+       tree))
+(scale-tree (list 1 (list 2 (list 3 4) 5) (list 6 7))
+	    10)
+;; gosh> (10 (20 (30 40) 50) (60 70))
