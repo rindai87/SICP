@@ -14,11 +14,13 @@
 
 ;; 最初に思いついた回答
 ;; 対なら(cdr, car)でくっつけて再帰的にたどっていく
-(define (deep-reverse . items)
+(define (deep-reverse items)
   (if (pair? items)
       (append (deep-reverse (cdr items))
               (list (deep-reverse (car items))))
       items))
+
+(deep-reverse x)
 
 ;; mapを使う
 ;; 葉まで分解し、再構築してreverseしながらくっつけていく
