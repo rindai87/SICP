@@ -35,6 +35,8 @@
 
 (list x x)
 ;; gosh> (#0=((1 2) 3 4) #0#)
+(display (list x x))
+;; gosh> (((1 2) 3 4) ((1 2) 3 4))#<undef>
 
 (length (list x x))
 ;; gosh> 2

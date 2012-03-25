@@ -1,11 +1,15 @@
 ;; 問題2.32
 
 ;; 集合の全ての部分集合の集合を表現する
-;; 冪集合の話に帰着する
+;; 冪集合の話
 
-;; subsetsから先頭の要素xを除いた集合の冪集合と、その各要素にxを加えた集合の和集合
+;; 冪集合Xは集合Xの全ての部分集合の集合
+;; => Xのある要素を抜き出した集合の部分集合と、各部分集合にXを加えた和集合
+;; => subsets内のrestが先頭要素を取り除いたもの
+;; => そこに取り除いた先頭要素を加えればよい？？
 ;; (subset (cdr (1 2 3)))
 ;; => (subset (2 3)) だから 1を加えるような処理
+;; => (append (map <1を加えるような手続き> rest))
 ;; => 空欄部分は(append (map <(lambda (x) (cons (car s) x))> rest))
 
 (define nil '())
@@ -35,7 +39,4 @@
 ;; RETN subsets (() (...) (...) (...) (1) (1 ...) (1 2) (1 2 3))
 
 
-
-;; s = (list 1 2 3)
-(append (subsets (cdr s))
-	(map (lambda (x) (cons (car s) x)) (subsets (cdr s))))
+;; http://d.hatena.ne.jp/awacio/20100512/1273670118

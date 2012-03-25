@@ -1,5 +1,6 @@
 ;; 問題2.30
 
+;; 再帰を利用したもの
 (define (square-tree tree)
   (define nil '())
   (cond [(null? tree) nil]
