@@ -121,3 +121,65 @@
 	      0
 	      (map salary
 		   (filter programmer? records))))
+
+(define n 6)
+(accumulate append
+	    nil
+	    (map (lambda (i)
+		   (map (lambda (j) (list i j))
+			(enumerate-interval 1 (- i 1))))
+		 (enumerate-interval 1 n)))
+;; gosh> ((2 1) (3 1) (3 2) (4 1) (4 2) (4 3) (5 1) (5 2) (5 3) (5 4) (6 1) (6 2) (6 3) (6 4) (6 5))
+
+(define (flatmap proc seq)
+  (accumulate append nil (map proc seq)))
+
+(define (prime-sum? pair)
+  (prime? (+ (car pair) (cadr pair))))
+
+(define (make-pair-sum pair)
+  (list (car pair) (cadr pair) (+ (car pair) (cadr pair))))
+
+(define (prime-sum-pairs n)
+  (map make-pair-sum
+       (filter prime-sum?
+	       (flatmap
+		(lambda (i)
+		  (map (lambda (j) (list i j))
+		       (enumerate-interval 1 (- i 1))))
+		(enumerate-interval 1 n)))))
+
+(define (smallest-divisor n)
+  (find-divisor n 2))
+
+c(define (find-divisor n test-divisor)
+  (cond [(> (square test-divisor) n) n]
+	[(divides? test-divisor n) test-divisor]
+	[else (find-divisor n (+ test-divisor 1))]))
+
+(define (divides? a b)
+  (= (remainder b a) 0))
+
+(define (prime? n)
+  (= n (smallest-divisor n)))
+
+(prime-sum-pairs 3)
+;; gosh> ((2 1 3) (3 2 5))
+
+
+
+;; 順列
+(define (permutations s)
+  (if (null? s)
+      (list nil)
+      (flatmap (lambda (x)
+		 (map (lambda (p) (cons x p))
+		      (permutations (remove x s))))
+		 s)))
+
+(define (remove item sequence)
+  (filter (lambda (x) (not (= x item)))
+	  sequence))
+
+(permutations (list 1 2 3))
+;; gosh> ((1 2 3) (1 3 2) (2 1 3) (2 3 1) (3 1 2) (3 2 1))
